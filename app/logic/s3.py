@@ -1,6 +1,6 @@
 import boto3
 from datetime import datetime
-# List objects in an amazon s3 bucket
+from .log import logging
 
 
 def list_buckets():
@@ -16,7 +16,7 @@ def list_bucket_objects(bucket_name:str):
         for obj in bucket.objects.all():
             my_map.append(obj.key)
     except Exception:
-        print(f"[{datetime.utcnow()}]: Exception occured while getting bucket details:{bucket_name} not found.")
+        logging.error(f"[{datetime.utcnow()}]: Exception occured while getting bucket details:{bucket_name} not found.")
     return my_map
 
-    
+
